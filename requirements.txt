@@ -1,0 +1,3 @@
+flask
+msal
+git+https://github.com/azure-samples/ms-identity-python-utilities.git
