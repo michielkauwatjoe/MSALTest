@@ -6,6 +6,7 @@ from pathlib import Path
 import app_config
 from ms_identity_web import IdentityWebPython
 from ms_identity_web.adapters import FlaskContextAdapter
+from ms_identity_web.errors import NotAuthenticatedError
 from ms_identity_web.configuration import AADConfig
 
 """
@@ -17,6 +18,7 @@ Do not run using this configuration in production.
 On the command line:
 
 =======================================================
+
     export FLASK_APP=app.py
     export FLASK_ENV=development
     export FLASK_DEBUG=1
