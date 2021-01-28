@@ -1,5 +1,6 @@
 id.txt
 *.pyc
+*.swp
 venv
 __py_cache__
 flask_session

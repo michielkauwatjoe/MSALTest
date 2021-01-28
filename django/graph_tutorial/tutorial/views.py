@@ -3,12 +3,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from datetime import datetime, timedelta
 from dateutil import tz, parser
-from tutorial.auth_helper import get_sign_in_flow, get_token_from_code, store_user, remove_user_and_token, get_token
+from tutorial.auth_helper import (get_sign_in_flow, get_token_from_code,
+        store_user, remove_user_and_token, get_token)
 from tutorial.graph_helper import *
 
 def home(request):
     context = initialize_context(request)
-
     return render(request, 'tutorial/home.html', context)
 
 def initialize_context(request):
@@ -36,12 +36,13 @@ def sign_in(request):
     # Redirect to the Azure sign-in page
     return HttpResponseRedirect(flow['auth_uri'])
 
-def callback(request):
+def getAToken(request):
     # Make the token request
     result = get_token_from_code(request)
 
     #Get the user's profile
     user = get_user(result['access_token'])
+    print(user)
 
     # Store user
     store_user(request, user)

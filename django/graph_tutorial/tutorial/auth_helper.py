@@ -2,6 +2,7 @@ import yaml
 import msal
 import os
 import time
+import traceback
 
 # Load the oauth_settings.yml file
 stream = open('oauth_settings.yml', 'r')
@@ -45,7 +46,6 @@ def get_token_from_code(request):
 
     # Get the flow saved in session
     flow = request.session.pop('auth_flow', {})
-
     result = auth_app.acquire_token_by_auth_code_flow(flow, request.GET)
     save_cache(request, cache)
 
@@ -57,10 +57,14 @@ def store_user(request, user):
             'is_authenticated': True,
             'name': user['displayName'],
             'email': user['mail'] if (user['mail'] != None) else user['userPrincipalName'],
-            'timeZone': user['mailboxSettings']['timeZone']
+            #'timeZone': user['mailboxSettings']['timeZone']
         }
+        print(request.session)
     except Exception as e:
-        print(e)
+        print('Error storing user, %s' % e)
+        print(traceback.format_exc())
+        print(user)
+
 
 def get_token(request):
     cache = load_cache(request)
