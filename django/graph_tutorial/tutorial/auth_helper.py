@@ -56,10 +56,7 @@ def store_user(request, user):
         request.session['user'] = {
             'is_authenticated': True,
             'name': user['displayName'],
-            'email': user['mail'] if (user['mail'] != None) else user['userPrincipalName'],
-            #'timeZone': user['mailboxSettings']['timeZone']
         }
-        print(request.session)
     except Exception as e:
         print('Error storing user, %s' % e)
         print(traceback.format_exc())

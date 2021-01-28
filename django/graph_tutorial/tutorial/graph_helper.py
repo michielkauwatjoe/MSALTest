@@ -5,8 +5,7 @@ graph_url = 'https://graph.microsoft.com/v1.0'
 
 def get_user(token):
     endpoint = '{0}/me'.format(graph_url)
-    params = {'$select': 'displayName,mail,userPrincipalName'}
-    #params = {'$select': 'displayName,mail,mailboxSettings,userPrincipalName'}
+    params = {'$select': 'displayName,userPrincipalName'}
     headers = {'Authorization': 'Bearer {0}'.format(token)}
 
     # Send GET to /me
