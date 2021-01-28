@@ -51,16 +51,16 @@ def get_token_from_code(request):
 
     return result
 
-    def store_user(request, user):
-        try:
-            request.session['user'] = {
-                'is_authenticated': True,
-                'name': user['displayName'],
-                'email': user['mail'] if (user['mail'] != None) else user['userPrincipalName'],
-                'timeZone': user['mailboxSettings']['timeZone']
-            }
-        except Exception as e:
-            print(e)
+def store_user(request, user):
+    try:
+        request.session['user'] = {
+            'is_authenticated': True,
+            'name': user['displayName'],
+            'email': user['mail'] if (user['mail'] != None) else user['userPrincipalName'],
+            'timeZone': user['mailboxSettings']['timeZone']
+        }
+    except Exception as e:
+        print(e)
 
 def get_token(request):
     cache = load_cache(request)

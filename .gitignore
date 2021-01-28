@@ -3,3 +3,4 @@ id.txt
 venv
 __py_cache__
 flask_session
+oauth_settings.yml
